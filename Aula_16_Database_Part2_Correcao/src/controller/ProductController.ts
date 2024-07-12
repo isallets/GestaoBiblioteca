@@ -3,7 +3,7 @@ import { ProductService } from "../service/ProductService";
 
 const productService = new ProductService();
 
-export async function cadastrarProduto (req: Request, res: Response){
+export async function criarLivros (req: Request, res: Response){
     try {
         const novoProduto = await productService.cadastrarProduto(req.body);
         res.status(201).json(
@@ -16,7 +16,7 @@ export async function cadastrarProduto (req: Request, res: Response){
         res.status(400).json({ message: error.message});
     }
 };
-
+/*
 export async function atualizarProduto (req: Request, res: Response){
     try {
         const produto = await productService.atualizarProduto(req.body);
@@ -71,4 +71,6 @@ export async function listarTodosProduto (req: Request, res: Response){
     } catch (error: any) {
         res.status(400).json({ message: error.message});
     }
+
 };
+*/
