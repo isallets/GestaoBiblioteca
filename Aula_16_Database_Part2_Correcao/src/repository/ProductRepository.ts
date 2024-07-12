@@ -22,7 +22,7 @@ export class ProductRepository{
             console.error('Error');
         }
     }
-
+/*
     async insertProduct(name: string, price: number) :Promise<Product>{
         const query = "INSERT INTO vendas.Product (name, price) VALUES (?, ?)" ;
 
@@ -99,6 +99,6 @@ export class ProductRepository{
             throw err;
         }
     }
-
+*/
     
 }
