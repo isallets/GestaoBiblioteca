@@ -15,7 +15,7 @@ export class BooksRepository{
             author VARCHAR(300) NOT NULL,
             publishedDate VARCHAR(10) NOT NULL,
             isbn VARCHAR(100) NOT NULL,
-            pages NUMBER(9000) NOT NULL,
+            pages INT NOT NULL,
             language VARCHAR(100) NOT NULL,
             publisher VARCHAR(200) NOT NULL
         )`;

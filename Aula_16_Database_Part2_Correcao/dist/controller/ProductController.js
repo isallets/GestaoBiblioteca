@@ -9,20 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.cadastrarProduto = cadastrarProduto;
-exports.atualizarProduto = atualizarProduto;
-exports.deletarProduto = deletarProduto;
-exports.filtrarProduto = filtrarProduto;
-exports.listarTodosProduto = listarTodosProduto;
+exports.criarLivros = criarLivros;
 const ProductService_1 = require("../service/ProductService");
-const productService = new ProductService_1.ProductService();
-function cadastrarProduto(req, res) {
+const booksService = new ProductService_1.BooksService();
+function criarLivros(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const novoProduto = yield productService.cadastrarProduto(req.body);
+            const novoLivro = yield booksService.cadastrarLivro(req.body);
             res.status(201).json({
-                mensagem: "Produto adicionado com sucesso!",
-                produto: novoProduto
+                mensagem: "Livro adicionado com sucesso!",
+                livro: novoLivro
             });
         }
         catch (error) {
@@ -31,63 +27,61 @@ function cadastrarProduto(req, res) {
     });
 }
 ;
-function atualizarProduto(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const produto = yield productService.atualizarProduto(req.body);
-            res.status(200).json({
-                mensagem: "Produto atualizado com sucesso!",
-                produto: produto
-            });
-        }
-        catch (error) {
-            res.status(400).json({ message: error.message });
-        }
-    });
-}
-;
-function deletarProduto(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const produto = yield productService.deletarProduto(req.body);
-            res.status(200).json({
-                mensagem: "Produto deletado com sucesso!",
-                produto: produto
-            });
-        }
-        catch (error) {
-            res.status(400).json({ message: error.message });
-        }
-    });
-}
-;
-function filtrarProduto(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const produto = yield productService.filtrarProduto(req.query.id);
-            res.status(200).json({
-                mensagem: "Produto encontrado com sucesso!",
-                produto: produto
-            });
-        }
-        catch (error) {
-            res.status(400).json({ message: error.message });
-        }
-    });
-}
-;
-function listarTodosProduto(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
-            const produtos = yield productService.listarTodosProdutos();
-            res.status(200).json({
-                mensagem: "Produtos listados com sucesso!",
-                produtos: produtos
-            });
-        }
-        catch (error) {
-            res.status(400).json({ message: error.message });
-        }
-    });
-}
-;
+/*
+export async function atualizarProduto (req: Request, res: Response){
+    try {
+        const produto = await productService.atualizarProduto(req.body);
+        res.status(200).json(
+            {
+                mensagem:"Produto atualizado com sucesso!",
+                produto:produto
+            }
+        );
+    } catch (error: any) {
+        res.status(400).json({ message: error.message});
+    }
+};
+
+export async function deletarProduto (req: Request, res: Response){
+    try {
+        const produto = await productService.deletarProduto(req.body);
+        res.status(200).json(
+            {
+                mensagem:"Produto deletado com sucesso!",
+                produto:produto
+            }
+        );
+    } catch (error: any) {
+        res.status(400).json({ message: error.message});
+    }
+};
+
+export async function filtrarProduto (req: Request, res: Response){
+    try {
+        const produto = await productService.filtrarProduto(req.query.id);
+        res.status(200).json(
+            {
+                mensagem:"Produto encontrado com sucesso!",
+                produto:produto
+            }
+        );
+    } catch (error: any) {
+        res.status(400).json({ message: error.message});
+    }
+};
+
+export async function listarTodosProduto (req: Request, res: Response){
+    try {
+        const produtos = await productService.listarTodosProdutos();
+        res.status(200).json(
+            {
+                mensagem:"Produtos listados com sucesso!",
+                produtos:produtos
+            }
+            );
+    } catch (error: any) {
+        res.status(400).json({ message: error.message});
+    }
+
+};
+*/ 

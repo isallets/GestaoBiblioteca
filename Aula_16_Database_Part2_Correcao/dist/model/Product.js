@@ -1,11 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Product = void 0;
-class Product {
-    constructor(id, name, price) {
-        this.id = id || 0;
-        this.name = name || '';
-        this.price = price || 0;
+exports.Books = void 0;
+class Books {
+    constructor(id, title, author, publishedDate, isbn, pages, language, publisher) {
+        this.id = id;
+        this.title = title;
+        this.author = author;
+        this.publishedDate = publishedDate;
+        this.isbn = isbn;
+        this.pages = pages;
+        this.language = language;
+        this.publisher = publisher;
     }
 }
-exports.Product = Product;
+exports.Books = Books;
