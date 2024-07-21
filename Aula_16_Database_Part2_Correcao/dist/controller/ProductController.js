@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.criarLivros = criarLivros;
+exports.criarLivros = void 0;
 const ProductService_1 = require("../service/ProductService");
 const booksService = new ProductService_1.BooksService();
 function criarLivros(req, res) {
@@ -26,6 +26,7 @@ function criarLivros(req, res) {
         }
     });
 }
+exports.criarLivros = criarLivros;
 ;
 /*
 export async function atualizarProduto (req: Request, res: Response){

@@ -43,16 +43,16 @@ export class BooksRepository{
             throw err;
         }
     }
-/*
-    async updateProduct(id: number, name: string, price: number) :Promise<Product>{
-        const query = "UPDATE vendas.product set name = ?, price = ? where id = ?;" ;
+
+    async updateBook(id: string, title: string, author: string, publishedDate:string, isbn: string, pages: number, language: string, publisher: string) :Promise<Books>{
+        const query = "UPDATE books.Product set title = ?, author = ?, publishedDATE = ?, isbn = ?, pages = ?, language = ?, publisher = ? where id = ?;" ;
 
         try {
-            const resultado = await executarComandoSQL(query, [name, price, id]);
+            const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher, id]);
             console.log('Produto atualizado com sucesso, ID: ', resultado);
-            const product = new Product(id, name, price);
-            return new Promise<Product>((resolve)=>{
-                resolve(product);
+            const books = new Books(id, title, author, publishedDate, isbn, pages, language, publisher);
+            return new Promise<Books>((resolve)=>{
+                resolve(books);
             })
         } catch (err:any) {
             console.error(`Erro ao atualizar o produto de ID ${id} gerando o erro: ${err}`);
@@ -60,15 +60,15 @@ export class BooksRepository{
         }
     }
 
-    async deleteProduct(id: number, name:string, price:number) :Promise<Product>{
-        const query = "DELETE FROM vendas.product where id = ?;" ;
+    async deleteBook(id: string, title: string, author: string, publishedDate:string, isbn: string, pages: number, language: string, publisher: string) :Promise<Books>{
+        const query = "DELETE FROM books.Product where id = ?;" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('Produto deletado com sucesso, ID: ', resultado);
-            const product = new Product(id, name, price);
-            return new Promise<Product>((resolve)=>{
-                resolve(product);
+            console.log('Livro deletado com sucesso, ID: ', resultado);
+            const books = new Books (id, title, author, publishedDate, isbn, pages, language, publisher);
+            return new Promise<Books>((resolve)=>{
+                resolve(books);
             })
         } catch (err:any) {
             console.error(`Falha ao deletar o produto de ID ${id} gerando o erro: ${err}`);
@@ -76,34 +76,34 @@ export class BooksRepository{
         }
     }
 
-    async filterProduct(id: number) :Promise<Product>{
-        const query = "SELECT * FROM vendas.product where id = ?" ;
+    async filterBook(id: number) :Promise<Books>{
+        const query = "SELECT * FROM books.Product where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('Produto localizado com sucesso, ID: ', resultado);
-            return new Promise<Product>((resolve)=>{
+            console.log('Livro localizado com sucesso, ID: ', resultado);
+            return new Promise<Books>((resolve)=>{
                 resolve(resultado);
             })
         } catch (err:any) {
-            console.error(`Falha ao procurar o produto de ID ${id} gerando o erro: ${err}`);
+            console.error(`Falha ao procurar o livro de ID ${id} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterAllProduct() :Promise<Product[]>{
-        const query = "SELECT * FROM vendas.product" ;
+    async filterAllBooks() :Promise<Books[]>{
+        const query = "SELECT * FROM books.Product" ;
 
         try {
             const resultado = await executarComandoSQL(query, []);
-            return new Promise<Product[]>((resolve)=>{
+            return new Promise<Books[]>((resolve)=>{
                 resolve(resultado);
             })
         } catch (err:any) {
-            console.error(`Falha ao listar os produtos gerando o erro: ${err}`);
+            console.error(`Falha ao listar os livros gerando o erro: ${err}`);
             throw err;
         }
     }
-*/
+
     
 }

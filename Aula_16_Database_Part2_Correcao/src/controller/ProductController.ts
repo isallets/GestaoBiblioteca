@@ -11,19 +11,20 @@ export async function criarLivros (req: Request, res: Response){
                 mensagem:"Livro adicionado com sucesso!",
                 livro:novoLivro
             }
+            
         );
     } catch (error: any) {
         res.status(400).json({ message: error.message});
     }
 };
-/*
-export async function atualizarProduto (req: Request, res: Response){
+
+export async function atualizarLivros (req: Request, res: Response){
     try {
-        const produto = await productService.atualizarProduto(req.body);
+        const novoLivro = await booksService.atualizarLivro(req.body);
         res.status(200).json(
             {
-                mensagem:"Produto atualizado com sucesso!",
-                produto:produto
+                mensagem:"Livro atualizado com sucesso!",
+                livro:novoLivro
             }
         );
     } catch (error: any) {
@@ -31,13 +32,13 @@ export async function atualizarProduto (req: Request, res: Response){
     }
 };
 
-export async function deletarProduto (req: Request, res: Response){
+export async function deletarLivros(req: Request, res: Response){
     try {
-        const produto = await productService.deletarProduto(req.body);
+        const novoLivro = await booksService.deletarLivro(req.body);
         res.status(200).json(
             {
                 mensagem:"Produto deletado com sucesso!",
-                produto:produto
+                livro:novoLivro
             }
         );
     } catch (error: any) {
@@ -45,13 +46,13 @@ export async function deletarProduto (req: Request, res: Response){
     }
 };
 
-export async function filtrarProduto (req: Request, res: Response){
+export async function consultarLivros (req: Request, res: Response){
     try {
-        const produto = await productService.filtrarProduto(req.query.id);
+        const novoLivro = await booksService.filtrarProduto(req.query.id);
         res.status(200).json(
             {
-                mensagem:"Produto encontrado com sucesso!",
-                produto:produto
+                mensagem:"Livro encontrado com sucesso!",
+                livro:novoLivro
             }
         );
     } catch (error: any) {
@@ -59,13 +60,13 @@ export async function filtrarProduto (req: Request, res: Response){
     }
 };
 
-export async function listarTodosProduto (req: Request, res: Response){
+export async function consultarLivrosId (req: Request, res: Response){
     try {
-        const produtos = await productService.listarTodosProdutos();
+        const novoLivro = await booksService.listarTodosProdutos();
         res.status(200).json(
             {
-                mensagem:"Produtos listados com sucesso!",
-                produtos:produtos
+                mensagem:"Todos os livros listados com sucesso!",
+                livro:novoLivro
             }
             );
     } catch (error: any) {
@@ -73,4 +74,3 @@ export async function listarTodosProduto (req: Request, res: Response){
     }
 
 };
-*/
