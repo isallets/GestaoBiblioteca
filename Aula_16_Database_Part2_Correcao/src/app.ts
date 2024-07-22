@@ -1,6 +1,6 @@
 import express from 'express';
 import { criarLivros, atualizarLivros, deletarLivros, consultarLivros, consultarLivrosId} from './controller/ProductController';
-//atualizarProduto, deletarProduto, filtrarProduto, listarTodosProduto 
+
 const app = express();
 
 const PORT = 3100;

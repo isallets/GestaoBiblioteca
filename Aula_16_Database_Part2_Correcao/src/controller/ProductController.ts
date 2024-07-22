@@ -9,12 +9,13 @@ export async function criarLivros (req: Request, res: Response){
         res.status(201).json(
             {
                 mensagem:"Livro adicionado com sucesso!",
-                livro:novoLivro
+                novoLivro:novoLivro
             }
+
             
         );
     } catch (error: any) {
-        res.status(409).json({ message: error.message});
+        res.status(400).json({ message: error.message});
     }
 };
 
@@ -24,7 +25,7 @@ export async function atualizarLivros (req: Request, res: Response){
         res.status(200).json(
             {
                 mensagem:"Livro atualizado com sucesso!",
-                livro:novoLivro
+                novoLivro:novoLivro
             }
         );
     } catch (error: any) {
@@ -38,7 +39,7 @@ export async function deletarLivros(req: Request, res: Response){
         res.status(200).json(
             {
                 mensagem:"Livro deletado com sucesso!",
-                livro:novoLivro
+                novoLivro:novoLivro
             }
         );
     } catch (error: any) {
@@ -52,7 +53,7 @@ export async function consultarLivrosId (req: Request, res: Response){
         res.status(200).json(
             {
                 mensagem:"Livro encontrado com sucesso!",
-                livro:novoLivro
+                novoLivro:novoLivro
             }
         );
     } catch (error: any) {
@@ -66,7 +67,7 @@ export async function consultarLivros(req: Request, res: Response){
         res.status(200).json(
             {
                 mensagem:"Todos os livros listados com sucesso!",
-                livro:novoLivro
+                novoLivro:novoLivro
             }
             );
     } catch (error: any) {

@@ -60,14 +60,14 @@ class BooksRepository {
             const query = "UPDATE books.Product set title = ?, author = ?, publishedDATE = ?, isbn = ?, pages = ?, language = ?, publisher = ? where id = ?;";
             try {
                 const resultado = yield (0, mysql_1.executarComandoSQL)(query, [title, author, publishedDate, isbn, pages, language, publisher, id]);
-                console.log('Produto atualizado com sucesso, ID: ', resultado);
+                console.log('Livro atualizado com sucesso, ID: ', resultado);
                 const books = new Product_1.Books(id, title, author, publishedDate, isbn, pages, language, publisher);
                 return new Promise((resolve) => {
                     resolve(books);
                 });
             }
             catch (err) {
-                console.error(`Erro ao atualizar o produto de ID ${id} gerando o erro: ${err}`);
+                console.error(`Erro ao atualizar o livro de ID ${id} gerando o erro: ${err}`);
                 throw err;
             }
         });
@@ -84,12 +84,28 @@ class BooksRepository {
                 });
             }
             catch (err) {
-                console.error(`Falha ao deletar o produto de ID ${id} gerando o erro: ${err}`);
+                console.error(`Falha ao deletar o livro de ID ${id} gerando o erro: ${err}`);
                 throw err;
             }
         });
     }
-    filterBook(isbn) {
+    filterBookId(id) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const query = "SELECT * FROM books.Product where id = ?";
+            try {
+                const resultado = yield (0, mysql_1.executarComandoSQL)(query, [id]);
+                console.log('Livro localizado com sucesso, id: ', resultado);
+                return new Promise((resolve) => {
+                    resolve(resultado);
+                });
+            }
+            catch (err) {
+                console.error(`Falha ao procurar o livro de ID ${id} gerando o erro: ${err}`);
+                throw err;
+            }
+        });
+    }
+    filterBookISBN(isbn) {
         return __awaiter(this, void 0, void 0, function* () {
             const query = "SELECT * FROM books.Product where isbn = ?";
             try {
@@ -100,7 +116,7 @@ class BooksRepository {
                 });
             }
             catch (err) {
-                console.error(`Falha ao procurar o livro de ID ${isbn} gerando o erro: ${err}`);
+                console.error(`Falha ao procurar o livro de ISBN ${isbn} gerando o erro: ${err}`);
                 throw err;
             }
         });

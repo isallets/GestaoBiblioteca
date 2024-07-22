@@ -101,7 +101,7 @@ export class BooksRepository{
                 resolve(resultado);
             })
         } catch (err:any) {
-            console.error(`Falha ao procurar o livro de ID ${isbn} gerando o erro: ${err}`);
+            console.error(`Falha ao procurar o livro de ISBN ${isbn} gerando o erro: ${err}`);
             throw err;
         }
     }

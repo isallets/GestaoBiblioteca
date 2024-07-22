@@ -12,8 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.criarLivros = criarLivros;
 exports.atualizarLivros = atualizarLivros;
 exports.deletarLivros = deletarLivros;
+exports.consultarLivrosId = consultarLivrosId;
 exports.consultarLivros = consultarLivros;
-exports.consultarLivrosIsbn = consultarLivrosIsbn;
 const ProductService_1 = require("../service/ProductService");
 const booksService = new ProductService_1.BooksService();
 function criarLivros(req, res) {
@@ -22,11 +22,11 @@ function criarLivros(req, res) {
             const novoLivro = yield booksService.cadastrarLivro(req.body);
             res.status(201).json({
                 mensagem: "Livro adicionado com sucesso!",
-                livro: novoLivro
+                novoLivro: novoLivro
             });
         }
         catch (error) {
-            res.status(400).json({ message: error.message });
+            res.status(409).json({ message: error.message });
         }
     });
 }
@@ -37,7 +37,7 @@ function atualizarLivros(req, res) {
             const novoLivro = yield booksService.atualizarLivro(req.body);
             res.status(200).json({
                 mensagem: "Livro atualizado com sucesso!",
-                livro: novoLivro
+                novoLivro: novoLivro
             });
         }
         catch (error) {
@@ -51,12 +51,27 @@ function deletarLivros(req, res) {
         try {
             const novoLivro = yield booksService.deletarLivro(req.body);
             res.status(200).json({
-                mensagem: "Produto deletado com sucesso!",
-                livro: novoLivro
+                mensagem: "Livro deletado com sucesso!",
+                novoLivro: novoLivro
             });
         }
         catch (error) {
             res.status(400).json({ message: error.message });
+        }
+    });
+}
+;
+function consultarLivrosId(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const novoLivro = yield booksService.filtrarLivroId(req.query.id);
+            res.status(200).json({
+                mensagem: "Livro encontrado com sucesso!",
+                novoLivro: novoLivro
+            });
+        }
+        catch (error) {
+            res.status(404).json({ message: error.message });
         }
     });
 }
@@ -64,25 +79,10 @@ function deletarLivros(req, res) {
 function consultarLivros(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const novoLivro = yield booksService.filtrarLivro(req.query.isbn);
-            res.status(200).json({
-                mensagem: "Livro encontrado com sucesso!",
-                livro: novoLivro
-            });
-        }
-        catch (error) {
-            res.status(400).json({ message: error.message });
-        }
-    });
-}
-;
-function consultarLivrosIsbn(req, res) {
-    return __awaiter(this, void 0, void 0, function* () {
-        try {
             const novoLivro = yield booksService.listarTodosLivros();
             res.status(200).json({
                 mensagem: "Todos os livros listados com sucesso!",
-                livro: novoLivro
+                novoLivro: novoLivro
             });
         }
         catch (error) {

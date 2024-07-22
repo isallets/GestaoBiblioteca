@@ -11,11 +11,11 @@ export class BooksService{
             throw new Error("Informações incompletas");
         }
         
-        const livroRepetido =  await this.booksRepository.filterBookISBN(isbn);
+       const livroRepetido =  await this.booksRepository.filterBookISBN(isbn);
         if (livroRepetido.isbn = isbn){
-            throw new Error ("Livro já cadastrado!!!");
+            throw new Error ("Livro já cadastrado!!!")
         }
-
+        
         const novoLivro =  await this.booksRepository.insertBook(title, author, publishedDate, isbn, pages, language, publisher);
         console.log("Service - Insert ", novoLivro);
         return novoLivro;

@@ -21,7 +21,7 @@ class BooksService {
             if (!title || !author || !publishedDate || !isbn || !pages || !language || !publisher) {
                 throw new Error("Informações incompletas");
             }
-            const livroRepetido = yield this.booksRepository.filterBook(isbn);
+            const livroRepetido = yield this.booksRepository.filterBookISBN(isbn);
             if (livroRepetido.isbn = isbn) {
                 throw new Error("Livro já cadastrado!!!");
             }
@@ -30,9 +30,9 @@ class BooksService {
             return novoLivro;
         });
     }
-    atualizarLivro(produtoData) {
+    atualizarLivro(livroData) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id, title, author, publishedDate, isbn, pages, language, publisher } = produtoData;
+            const { id, title, author, publishedDate, isbn, pages, language, publisher } = livroData;
             if (!id || !title || !author || !publishedDate || !isbn || !pages || !language || !publisher) {
                 throw new Error("Informações incompletas");
             }
@@ -41,9 +41,9 @@ class BooksService {
             return book;
         });
     }
-    deletarLivro(produtoData) {
+    deletarLivro(livroData) {
         return __awaiter(this, void 0, void 0, function* () {
-            const { id, title, author, publishedDate, isbn, pages, language, publisher } = produtoData;
+            const { id, title, author, publishedDate, isbn, pages, language, publisher } = livroData;
             if (!id || !title || !author || !publishedDate || !isbn || !pages || !language || !publisher) {
                 throw new Error("Informações incompletas");
             }
@@ -52,22 +52,25 @@ class BooksService {
             return book;
         });
     }
-    filtrarLivro(produtoData) {
+    filtrarLivroId(livroData) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (!produtoData) {
+            if (!livroData) {
                 throw new Error("Informações incompletas");
             }
-            const id = parseInt(produtoData, 10);
-            const produto = yield this.booksRepository.filterBook(id);
-            console.log("Service - Filtrar", produto);
-            return produto;
+            const id = parseInt(livroData, 10);
+            const book = yield this.booksRepository.filterBookId(id);
+            if (book.isbn == '') {
+                throw new Error("Livro não encontrado!");
+            }
+            console.log("Service - Filtrar", book);
+            return book;
         });
     }
     listarTodosLivros() {
         return __awaiter(this, void 0, void 0, function* () {
-            const produto = yield this.booksRepository.filterAllBooks();
-            console.log("Service - Filtrar Todos", produto);
-            return produto;
+            const livro = yield this.booksRepository.filterAllBooks();
+            console.log("Service - Filtrar Todos", livro);
+            return livro;
         });
     }
 }
