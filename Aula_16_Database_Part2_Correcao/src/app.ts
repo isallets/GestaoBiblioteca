@@ -3,14 +3,14 @@ import { criarLivros, atualizarLivros, deletarLivros, consultarLivros, consultar
 //atualizarProduto, deletarProduto, filtrarProduto, listarTodosProduto 
 const app = express();
 
-const PORT = 3000;
+const PORT = 3100;
 
 app.use(express.json());
 
 app.post("/api/books", criarLivros);
 app.put("/api/books", atualizarLivros);
-app.delete("/api/books", consultarLivros);
-app.get("/api/books/id", consultarLivrosId);
+app.delete("/api/books/todos", consultarLivros);
+app.get("/api/books", consultarLivrosId);
 app.get("/api/books", deletarLivros);
 
 

@@ -9,7 +9,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.criarLivros = void 0;
+exports.criarLivros = criarLivros;
+exports.atualizarLivros = atualizarLivros;
+exports.deletarLivros = deletarLivros;
+exports.consultarLivros = consultarLivros;
+exports.consultarLivrosIsbn = consultarLivrosIsbn;
 const ProductService_1 = require("../service/ProductService");
 const booksService = new ProductService_1.BooksService();
 function criarLivros(req, res) {
@@ -26,63 +30,64 @@ function criarLivros(req, res) {
         }
     });
 }
-exports.criarLivros = criarLivros;
 ;
-/*
-export async function atualizarProduto (req: Request, res: Response){
-    try {
-        const produto = await productService.atualizarProduto(req.body);
-        res.status(200).json(
-            {
-                mensagem:"Produto atualizado com sucesso!",
-                produto:produto
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
-
-export async function deletarProduto (req: Request, res: Response){
-    try {
-        const produto = await productService.deletarProduto(req.body);
-        res.status(200).json(
-            {
-                mensagem:"Produto deletado com sucesso!",
-                produto:produto
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
-
-export async function filtrarProduto (req: Request, res: Response){
-    try {
-        const produto = await productService.filtrarProduto(req.query.id);
-        res.status(200).json(
-            {
-                mensagem:"Produto encontrado com sucesso!",
-                produto:produto
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
-
-export async function listarTodosProduto (req: Request, res: Response){
-    try {
-        const produtos = await productService.listarTodosProdutos();
-        res.status(200).json(
-            {
-                mensagem:"Produtos listados com sucesso!",
-                produtos:produtos
-            }
-            );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-
-};
-*/ 
+function atualizarLivros(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const novoLivro = yield booksService.atualizarLivro(req.body);
+            res.status(200).json({
+                mensagem: "Livro atualizado com sucesso!",
+                livro: novoLivro
+            });
+        }
+        catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    });
+}
+;
+function deletarLivros(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const novoLivro = yield booksService.deletarLivro(req.body);
+            res.status(200).json({
+                mensagem: "Produto deletado com sucesso!",
+                livro: novoLivro
+            });
+        }
+        catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    });
+}
+;
+function consultarLivros(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const novoLivro = yield booksService.filtrarLivro(req.query.isbn);
+            res.status(200).json({
+                mensagem: "Livro encontrado com sucesso!",
+                livro: novoLivro
+            });
+        }
+        catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    });
+}
+;
+function consultarLivrosIsbn(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const novoLivro = yield booksService.listarTodosLivros();
+            res.status(200).json({
+                mensagem: "Todos os livros listados com sucesso!",
+                livro: novoLivro
+            });
+        }
+        catch (error) {
+            res.status(400).json({ message: error.message });
+        }
+    });
+}
+;

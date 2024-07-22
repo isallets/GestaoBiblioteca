@@ -49,13 +49,13 @@ export class BooksRepository{
 
         try {
             const resultado = await executarComandoSQL(query, [title, author, publishedDate, isbn, pages, language, publisher, id]);
-            console.log('Produto atualizado com sucesso, ID: ', resultado);
+            console.log('Livro atualizado com sucesso, ID: ', resultado);
             const books = new Books(id, title, author, publishedDate, isbn, pages, language, publisher);
             return new Promise<Books>((resolve)=>{
                 resolve(books);
             })
         } catch (err:any) {
-            console.error(`Erro ao atualizar o produto de ID ${id} gerando o erro: ${err}`);
+            console.error(`Erro ao atualizar o livro de ID ${id} gerando o erro: ${err}`);
             throw err;
         }
     }
@@ -71,22 +71,37 @@ export class BooksRepository{
                 resolve(books);
             })
         } catch (err:any) {
-            console.error(`Falha ao deletar o produto de ID ${id} gerando o erro: ${err}`);
+            console.error(`Falha ao deletar o livro de ID ${id} gerando o erro: ${err}`);
             throw err;
         }
     }
 
-    async filterBook(id: number) :Promise<Books>{
+    async filterBookId(id: number) :Promise<Books>{
         const query = "SELECT * FROM books.Product where id = ?" ;
 
         try {
             const resultado = await executarComandoSQL(query, [id]);
-            console.log('Livro localizado com sucesso, ID: ', resultado);
+            console.log('Livro localizado com sucesso, id: ', resultado);
             return new Promise<Books>((resolve)=>{
                 resolve(resultado);
             })
         } catch (err:any) {
             console.error(`Falha ao procurar o livro de ID ${id} gerando o erro: ${err}`);
+            throw err;
+        }
+    }
+
+    async filterBookISBN(isbn: number) :Promise<Books>{
+        const query = "SELECT * FROM books.Product where isbn = ?" ;
+
+        try {
+            const resultado = await executarComandoSQL(query, [isbn]);
+            console.log('Livro localizado com sucesso, ISBN: ', resultado);
+            return new Promise<Books>((resolve)=>{
+                resolve(resultado);
+            })
+        } catch (err:any) {
+            console.error(`Falha ao procurar o livro de ID ${isbn} gerando o erro: ${err}`);
             throw err;
         }
     }

@@ -14,7 +14,7 @@ export async function criarLivros (req: Request, res: Response){
             
         );
     } catch (error: any) {
-        res.status(400).json({ message: error.message});
+        res.status(409).json({ message: error.message});
     }
 };
 
@@ -37,21 +37,7 @@ export async function deletarLivros(req: Request, res: Response){
         const novoLivro = await booksService.deletarLivro(req.body);
         res.status(200).json(
             {
-                mensagem:"Produto deletado com sucesso!",
-                livro:novoLivro
-            }
-        );
-    } catch (error: any) {
-        res.status(400).json({ message: error.message});
-    }
-};
-
-export async function consultarLivros (req: Request, res: Response){
-    try {
-        const novoLivro = await booksService.filtrarProduto(req.query.id);
-        res.status(200).json(
-            {
-                mensagem:"Livro encontrado com sucesso!",
+                mensagem:"Livro deletado com sucesso!",
                 livro:novoLivro
             }
         );
@@ -62,7 +48,21 @@ export async function consultarLivros (req: Request, res: Response){
 
 export async function consultarLivrosId (req: Request, res: Response){
     try {
-        const novoLivro = await booksService.listarTodosProdutos();
+        const novoLivro = await booksService.filtrarLivroId(req.query.id);
+        res.status(200).json(
+            {
+                mensagem:"Livro encontrado com sucesso!",
+                livro:novoLivro
+            }
+        );
+    } catch (error: any) {
+        res.status(404).json({ message: error.message});
+    }
+};
+
+export async function consultarLivros(req: Request, res: Response){
+    try {
+        const novoLivro = await booksService.listarTodosLivros();
         res.status(200).json(
             {
                 mensagem:"Todos os livros listados com sucesso!",
