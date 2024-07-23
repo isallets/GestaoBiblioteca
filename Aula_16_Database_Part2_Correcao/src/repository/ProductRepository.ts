@@ -91,7 +91,7 @@ export class BooksRepository{
         }
     }
 
-    async filterBookISBN(isbn: number) :Promise<Books>{
+    async filterBookISBN(isbn: string) :Promise<Books>{
         const query = "SELECT * FROM books.Product where isbn = ?" ;
 
         try {

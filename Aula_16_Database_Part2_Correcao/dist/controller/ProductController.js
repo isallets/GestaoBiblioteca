@@ -9,11 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.criarLivros = criarLivros;
-exports.atualizarLivros = atualizarLivros;
-exports.deletarLivros = deletarLivros;
-exports.consultarLivrosId = consultarLivrosId;
-exports.consultarLivros = consultarLivros;
+exports.consultarLivros = exports.consultarLivrosId = exports.deletarLivros = exports.atualizarLivros = exports.criarLivros = void 0;
 const ProductService_1 = require("../service/ProductService");
 const booksService = new ProductService_1.BooksService();
 function criarLivros(req, res) {
@@ -26,10 +22,11 @@ function criarLivros(req, res) {
             });
         }
         catch (error) {
-            res.status(409).json({ message: error.message });
+            res.status(400).json({ message: error.message });
         }
     });
 }
+exports.criarLivros = criarLivros;
 ;
 function atualizarLivros(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -45,6 +42,7 @@ function atualizarLivros(req, res) {
         }
     });
 }
+exports.atualizarLivros = atualizarLivros;
 ;
 function deletarLivros(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -60,6 +58,7 @@ function deletarLivros(req, res) {
         }
     });
 }
+exports.deletarLivros = deletarLivros;
 ;
 function consultarLivrosId(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -75,6 +74,7 @@ function consultarLivrosId(req, res) {
         }
     });
 }
+exports.consultarLivrosId = consultarLivrosId;
 ;
 function consultarLivros(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -90,4 +90,5 @@ function consultarLivros(req, res) {
         }
     });
 }
+exports.consultarLivros = consultarLivros;
 ;

@@ -12,7 +12,7 @@ export class BooksService{
         }
         
        const livroRepetido =  await this.booksRepository.filterBookISBN(isbn);
-        if (livroRepetido.isbn = isbn){
+        if (livroRepetido){
             throw new Error ("Livro já cadastrado!!!")
         }
         

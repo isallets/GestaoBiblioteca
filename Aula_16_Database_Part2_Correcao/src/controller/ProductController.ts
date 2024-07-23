@@ -10,12 +10,14 @@ export async function criarLivros (req: Request, res: Response){
             {
                 mensagem:"Livro adicionado com sucesso!",
                 novoLivro:novoLivro
-            }
-
-            
+            }   
         );
     } catch (error: any) {
-        res.status(400).json({ message: error.message});
+        if (error.message.includes("Livro com ISBN já cadastrado")){
+            res.status(409).json({ message: error.message });
+        }else{
+            res.status(400).json({ message: error.message});
+        }
     }
 };
 
@@ -50,6 +52,9 @@ export async function deletarLivros(req: Request, res: Response){
 export async function consultarLivrosId (req: Request, res: Response){
     try {
         const novoLivro = await booksService.filtrarLivroId(req.query.id);
+        if(!novoLivro){
+            return res.status(404).json({ message: "Livro não encontrado" })
+        }
         res.status(200).json(
             {
                 mensagem:"Livro encontrado com sucesso!",
@@ -57,7 +62,7 @@ export async function consultarLivrosId (req: Request, res: Response){
             }
         );
     } catch (error: any) {
-        res.status(404).json({ message: error.message});
+        res.status(400).json({ message: error.message});
     }
 };
 

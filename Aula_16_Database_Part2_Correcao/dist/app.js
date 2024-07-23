@@ -5,7 +5,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const ProductController_1 = require("./controller/ProductController");
-//atualizarProduto, deletarProduto, filtrarProduto, listarTodosProduto 
 const app = (0, express_1.default)();
 const PORT = 3100;
 app.use(express_1.default.json());
